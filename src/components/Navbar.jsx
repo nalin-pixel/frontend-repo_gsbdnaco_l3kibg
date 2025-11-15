@@ -1,72 +1,34 @@
-import { Link, NavLink } from 'react-router-dom'
-import { Menu } from 'lucide-react'
-import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Product', to: '/product' },
-  { label: 'Care Dashboard', to: '/care-dashboard' },
-  { label: 'Scheduling', to: '/scheduling' },
-  { label: 'Patient Flow', to: '/patient-flow' },
-  { label: 'Consultation Workspace', to: '/consultation-workspace' },
-  { label: 'Telecare Suite', to: '/telecare-suite' },
-  { label: 'Scribe + Summaries', to: '/scribe-summaries' },
   { label: 'For Clinics', to: '/for-clinics' },
   { label: 'For Doctors', to: '/for-doctors' },
-  { label: 'UK Pilot Programme', to: '/uk-pilot' },
-  { label: 'About', to: '/about' },
-  { label: 'Compliance', to: '/compliance' },
-  { label: 'Contact', to: '/contact' }
+  { label: 'UK Pilot', to: '/uk-pilot' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/10 bg-black/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link to="/" className="text-white font-semibold tracking-tight text-lg">
-          HAAI
-        </Link>
-        <nav className="hidden lg:flex items-center gap-6">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `text-sm ${isActive ? 'text-white' : 'text-white/70 hover:text-white'}`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-        <button
-          className="lg:hidden text-white/80"
-          aria-label="Open menu"
-          onClick={() => setOpen(!open)}
-        >
-          <Menu size={22} />
-        </button>
-      </div>
-      {open && (
-        <div className="lg:hidden border-t border-white/10 bg-black/70 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-1 gap-3">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `block text-sm ${isActive ? 'text-white' : 'text-white/80 hover:text-white'}`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
+    <div className="fixed inset-x-0 bottom-4 z-50 flex justify-center px-4">
+      <nav className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.4)] px-2 py-2 max-w-[900px] w-full sm:w-auto">
+        {navItems.map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            className={({ isActive }) =>
+              `whitespace-nowrap rounded-full px-4 py-2 text-sm transition-colors duration-200 ${
+                isActive
+                  ? 'bg-white/15 text-white'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              }`
+            }
+          >
+            {item.label}
+          </NavLink>
+        ))}
+      </nav>
+    </div>
   )
 }

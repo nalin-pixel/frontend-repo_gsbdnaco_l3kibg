@@ -5,7 +5,7 @@ export default function PageShell({ children }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#07090B] via-[#0A0D10] to-[#0B0E11] text-white">
       <Navbar />
-      <main className="pt-16">
+      <main className="pb-28">
         {children}
       </main>
       <Footer />
